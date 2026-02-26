@@ -1,7 +1,9 @@
 import React from 'react';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import Index from '../app/(tabs)';
 import { StyleSheet } from 'react-native';
+import Index from '../app/(tabs)';
+import GalleryScreen from "../app/(tabs)/gallery";
+import ProfileScreen from "../app/(tabs)/profile";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -15,8 +17,8 @@ export default function TabsMenu() {
             }}
         >
             <Tab.Screen name="Головна" component={Index} />
-            <Tab.Screen name="Галерея" component={Index} />
-            <Tab.Screen name="Профіль" component={Index} />
+            <Tab.Screen name="Галерея" component={GalleryScreen} />
+            <Tab.Screen name="Профіль" component={ProfileScreen} />
         </Tab.Navigator>
     );
 }
