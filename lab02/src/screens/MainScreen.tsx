@@ -2,19 +2,39 @@ import {View, Text, FlatList} from "react-native";
 import {newsData} from "../data/mockData";
 import {News} from '../types/News';
 import {useState} from "react";
+import { useNavigation } from "@react-navigation/native";
+import {RootStackParamList} from "../types/navigation";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
+
+type NavigationProp = NativeStackNavigationProp<
+    RootStackParamList,
+    "MainScreen"
+>;
 
 export default function MainScreen() {
     const [data, setData] = useState(newsData);
     const [refreshing, setRefreshing] = useState(false);
 
-    const renderItem = ({item}: {item: News}) => {
-        return(
-            <View style={{padding: 16}}>
-                <Text>{item.title}</Text>
+    const navigation = useNavigation<NavigationProp>();
+
+    const renderItem = ({ item }: { item: News }) => {
+        return (
+            <View style={{ padding: 16 }}>
+                <Text
+                    onPress={() =>
+                        navigation.navigate("DetailsScreen", {
+                            title: item.title,
+                            description: item.description
+                        })
+                    }
+                >
+                    {item.title}
+                </Text>
+
                 <Text>{item.description}</Text>
             </View>
         );
-    }
+    };
 
     const onRefresh = () => {
         setRefreshing(true);
