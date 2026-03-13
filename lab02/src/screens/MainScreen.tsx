@@ -1,4 +1,4 @@
-import {View, Text, FlatList} from "react-native";
+import {View, Text, FlatList, Image} from "react-native";
 import {newsData} from "../data/mockData";
 import {News} from '../types/News';
 import {useState} from "react";
@@ -14,6 +14,9 @@ type NavigationProp = NativeStackNavigationProp<
 export default function MainScreen() {
     const [data, setData] = useState(newsData);
     const [refreshing, setRefreshing] = useState(false);
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
+    const [page, setPage] = useState(1);
+    const MAX_PAGES = 4;
 
     const navigation = useNavigation<NavigationProp>();
 
@@ -32,6 +35,10 @@ export default function MainScreen() {
                 </Text>
 
                 <Text>{item.description}</Text>
+                <Image
+                    source={{ uri: item.image }}
+                    style={{ width: "100%", height: 160, marginTop: 8, borderRadius: 8 }}
+                />
             </View>
         );
     };
@@ -41,18 +48,29 @@ export default function MainScreen() {
 
         setTimeout(()=>{
             setData(newsData);
+            setPage(1);
             setRefreshing(false)
         }, 1000);
     }
 
     const loadMore = () => {
-        const moreNews = newsData.map((item, i) => ({
-            ...item,
-            id: item.id + "_more_" + i
-        }))
+        if (isLoadingMore || refreshing || page >= MAX_PAGES) {
+            return;
+        }
 
-        setData(prev=> [...prev, ...moreNews])
-    }
+        setIsLoadingMore(true);
+
+        setTimeout(() => {
+        const moreNews = newsData.map((item, index) => ({
+            ...item,
+            id: `${item.id}_${page}_${index}_${Date.now()}`
+        }));
+
+        setData(prev => [...prev, ...moreNews]);
+        setPage((prev) => prev + 1);
+        setIsLoadingMore(false);
+        }, 700);
+    };
 
     return (
 
@@ -77,9 +95,11 @@ export default function MainScreen() {
                   }
 
                   ListFooterComponent={
-                      <Text style={{textAlign:"center", padding:20}}>
-                          Loading more...
-                      </Text>
+                      isLoadingMore ? (
+                          <Text style={{textAlign:"center", padding:20}}>
+                              Loading more...
+                          </Text>
+                      ) : null
                   }
         />
     )

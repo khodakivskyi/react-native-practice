@@ -1,4 +1,6 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { DrawerActions } from "@react-navigation/native";
+import { Pressable, Text } from "react-native";
 import MainScreen from "../screens/MainScreen";
 import DetailsScreen from "../screens/DetailsScreen";
 import {RootStackParamList} from "../types/navigation";
@@ -11,7 +13,14 @@ export default function(){
             <Stack.Screen
                 name="MainScreen"
                 component={MainScreen}
-                options={{ title: "News" }}
+                options={({ navigation }) => ({
+                    title: "News",
+                    headerLeft: () => (
+                        <Pressable onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
+                            <Text style={{ fontSize: 16, color: "#007AFF" }}>Menu</Text>
+                        </Pressable>
+                    ),
+                })}
             />
 
             <Stack.Screen

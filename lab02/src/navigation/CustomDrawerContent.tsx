@@ -7,12 +7,11 @@ export default function CustomDrawerContent(props: DrawerContentComponentProps) 
     return (
         <View style={styles.container}>
             <Image
-                source={{uri: "https://i.pravatar.cc/150?img=12"}}
                 style={styles.avatar}
             />
 
             <Text style={styles.name}>Андрій Ходаківський</Text>
-            <Text style={styles.group}>Група: React Native</Text>
+            <Text style={styles.group}>Група: ІПЗ-24-2</Text>
 
             <TouchableOpacity
                 style={styles.menuItem}
@@ -40,7 +39,8 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         borderRadius: 40,
-        marginBottom: 10
+        marginBottom: 10,
+        backgroundColor: "#219a00",
     },
     name: {
         fontSize: 18,

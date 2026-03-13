@@ -18,7 +18,7 @@ export default function DetailsScreen() {
         navigation.setOptions({
             title: title
         });
-    }, []);
+    }, [navigation, title]);
 
     return(
         <View style={{ padding: 20 }}>

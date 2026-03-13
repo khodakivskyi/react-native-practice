@@ -10,14 +10,12 @@ export default function AppNavigator(){
     return(
         <NavigationContainer>
             <Drawer.Navigator
-                screenOptions={{
-                    headerShown: false
-                }}
                 drawerContent={(props) => <CustomDrawerContent {...props}/>}
             >
                 <Drawer.Screen
                     name="News"
                     component={StackNavigator}
+                    options={{ headerShown: false }}
                 />
 
                 <Drawer.Screen
