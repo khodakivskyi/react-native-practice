@@ -42,17 +42,13 @@
 
 ## Скриншоти
 
-Вставити скриншоти у папку, наприклад, `assets/screenshots`, та оновити шляхи нижче.
+| NewsScreen | ContactScreen |
+|---|---|
+| ![](./docs/images/img.png) | ![](./docs/images/img_4.png) |
 
-### NewsScreen
-
-### ContactScreen
-
-### DetailScreen
-
-### MenuScreen
-
----
+| DetailScreen | MenuScreen |
+|---|---|
+| ![](./docs/images/img_1.png) | ![](./docs/images/img_2.png) |
 
 ## Висновки
 
