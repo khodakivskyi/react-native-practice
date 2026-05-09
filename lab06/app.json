@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "lab06",
+    "slug": "lab06",
+    "plugins": ["expo-router"],
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "edgeToEdgeEnabled": true,
+      "predictiveBackGestureEnabled": false
+    }
+  }
+}
