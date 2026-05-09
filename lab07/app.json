@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "lab07",
+    "slug": "lab07",
+    "scheme": "moblab",
+    "version": "1.0.0",
+    "platforms": ["ios", "android", "web"]
+  }
+}
